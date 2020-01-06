@@ -1,0 +1,24 @@
+Item;Price;Perc;ImgName;Category
+Armadio;550;0;ArmadioCamera.jpg;casa
+Aspirapolvere;120;0;aspirapolvere.jpg;casa
+Asse da stiro;230;0;AsseDaStiro.jpg;casa
+Utensili da cucina;50;0;AttrezziCucina.jpg;casa
+Set di calici da vino;60;0;BicchieriVino.jpg;casa
+Divano;1800;0;Divano.jpg;casa
+Ferro da stiro;230;0;FerroDaStiro.jpg;casa
+Frullatore;80;0;Frullatore.jpg;casa
+Lavatrice;650;0;Lavasciuga.jpg;casa
+Letto matrimoniale;800;0;LettoMatrimoniale.jpg;casa
+Materasso;650;0;Materasso.jpg;casa
+Batteria di pentole;300;0;Pentole.jpg;casa
+Set di piatti;150;0;Piatti.jpg;casa
+Piumone;550;0;Piumone.png;casa
+Set di posate;160;0;Posate.jpg;casa
+Sedie;250;0;Sedia.png;casa
+Set di coltelli;60;0;SetColtelli.jpg;casa
+Specchio;150;0;SpecchioCamera.jpg;casa
+Tavolo;400;0;Tavolo.png;casa
+Lezione di surf;200;0;surf.jpg;viaggio
+Noleggio auto;1200;0;Car.png;viaggio
+Ingresso a Six Flags;150;0;SixFlags.jpg;viaggio
+Tour in elicottero sul Grand Canyon;800;0;ElicotteroGrandCanyon.jpg;viaggio

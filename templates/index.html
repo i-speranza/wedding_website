@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Giacomo&Ilaria</title>
+    <link rel="icon" href="../static/images/favicon_ig.png" type="image/png">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Libre+Caslon+Text:400,400i,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Bad+Script|Simonetta|Tangerine|Tillana&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/animate.css">
+
+    <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../static/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../static/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="../static/css/aos.css">
+
+    <link rel="stylesheet" href="../static/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="../static/css/flaticon.css">
+    <link rel="stylesheet" href="../static/css/icomoon.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+	    <div class="container">
+	      <!-- <a class="navbar-brand" href="index.html">Hookup</a> -->
+	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav nav ml-auto">
+	          <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
+            <li class="nav-item"><a href="#cerimonia" class="nav-link"><span>Cerimonia</span></a></li>
+            <li class="nav-item"><a href="#ricevimento" class="nav-link"><span>Ricevimento</span></a></li>
+	          <li class="nav-item"><a href="#viaggio-nozze" class="nav-link"><span>Viaggio di nozze</span></a></li>
+            <li class="nav-item"><a href="#rsvp-section" class="nav-link"><span>RSVP</span></a></li>
+            <li class="nav-item"><a href="#lista-nozze" class="nav-link"><span>Lista Nozze</span></a></li>
+
+	          <!-- <li class="nav-item"><a href="#lovestory-section" class="nav-link"><span>Love Story</span></a></li>
+	          <li class="nav-item"><a href="#greeting-section" class="nav-link"><span>Greetings</span></a></li>
+	          <li class="nav-item"><a href="#people-section" class="nav-link"><span>People</span></a></li>
+	          <li class="nav-item"><a href="#when-where-section" class="nav-link"><span>When &amp; Where</span></a></li>
+	          <li class="nav-item"><a href="#gallery-section" class="nav-link"><span>Gallery</span></a></li> -->
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+
+	  <section id="home" class="video-hero js-fullheight"
+                       style="height: 700px; background-image: url(../static/images/engagement.jpg); background-size:cover; background-position: top center;"
+                       data-stellar-background-ratio="0.5">
+	  	<div class="overlay"></div>
+			<!-- <a class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=Mjjw19B7rMk',containment:'#home', showControls:false, autoPlay:true, loop:true, mute:true, startAt:0, opacity:1, quality:'default',optimizeDisplay:true}"></a> -->
+
+			<div class="container">
+				<div class="row js-fullheight justify-content-center d-flex align-items-center">
+					<div class="col-md-12">
+						<div class="text text-center">
+							<!-- <div class="icon">
+								<span class="flaticon-rose-outline-variant-with-vines-and-leaves"></span>
+							</div> -->
+							<!-- <span class="subheading">The Wedding of</span> -->
+              <h1>Giacomo<br/>&amp;<br/>Ilaria</h1> <!--style="color:#FACA21;"-->
+              <h2>Road to 16 Maggio 2020!</h2> <!--style="color:#D6991D;"-->
+							<!-- <div id="timer" class="d-flex">
+							  <div class="time" id="days"></div>
+							  <div class="time pl-3" id="hours"></div>
+							  <div class="time pl-3" id="minutes"></div>
+							  <div class="time pl-3" id="seconds"></div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+    <!--Modal: Mappa Chiesa-->
+    <div class="modal fade invisible" id="ModalShowChurchMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <!--Content-->
+        <div class="modal-content">
+          <!--Body-->
+          <div class="modal-body mb-0 p-0">
+            <!--Google map-->
+            <div class="embed-responsive embed-responsive-4by3">
+              <div id='map-cerimonia' class='embed-responsive-item' style="height: 100%; overflow: hidden"></div>
+            </div>
+          </div>
+          <!--Footer-->
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-outline-info btn-md" data-dismiss="modal">Chiudi<i class="fas fa-times ml-1"></i></button>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+    <!--Modal: Mappa Chiesa-->
+
+    <section class="ftco-section ftco-about" id="cerimonia">
+    	<div class="container">
+    		<div class="row justify-content-center pb-5">
+          <div class="col-md-12 text-center heading-section ftco-animate">
+          	<!-- <span class="clone">Place</span> -->
+            <h2 class="mb-3">Cerimonia</h2>
+          </div>
+        </div>
+        <div class="row">
+    			<div class="col-md-12">
+    				<div class="wrap">
+			    		<div class="row d-flex">
+			    			<div class="col-md-4 d-flex justify-content-center align-items-center">
+			    				<div class="img d-flex flex-wrap align-self-stretch align-items-center" style="background-image:url(../static/images/cerimonia.jpg);">
+			    				</div>
+			    			</div>
+			    			<div class="col-md-8 py-md-5 text">
+			    				<div class="py-md-4">
+				    				<div class="row justify-content-start pb-3">
+						          <div class="col-md-12 ftco-animate p-4 p-lg-5 text-center">
+						          	<!-- <span class="subheading mb-4">Join us to celebrate <br>the wedding day of</span> -->
+						            <!-- <h2 class="mb-4">Francisco <span>&amp;</span> Laura</h2> -->
+						            <!-- <span class="icon flaticon-rose-variant-outline-with-vines"></span> -->
+						            <span class="subheading mb-2">La cerimonia si terrà alle ore <strong>11:00</strong> presso</span>
+                        <span class="subheading"><strong>Chiesa di Sant'Anastasia</strong><br>Via Padre Reginaldo Giuliani, 8<br><strong>Villasanta</strong></span>
+                      </div>
+
+                      <div class="col text-center">
+                        <button type="button"
+                                class="btn btn-primary btn-lg"
+                                data-toggle="modal"
+                                data-target="#ModalShowChurchMap"
+                                data-name='cerimonia'>mappa con parcheggi</button>
+                      </div>
+						        </div>
+					        </div>
+				        </div>
+			        </div>
+			      </div>
+		      </div>
+		    </div>
+    	</div>
+    </section>
+
+    <!--Modal: Mappa Ristorante-->
+    <div class="modal fade" id="ModalShowRestaurantMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <!--Content-->
+        <div class="modal-content">
+          <!--Body-->
+          <div class="modal-body mb-0 p-0">
+            <!--Google map-->
+            <div class="z-depth-1-half map-container-4">
+              <iframe src="https://www.google.com/maps/embed/v1/place?q=ristorante%20feudo%20agnadello&key=AIzaSyABp0GM1bXb3CX2DK2VuTnierdH4mrmFAM"
+                      frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+          <!--Footer-->
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-outline-info btn-md" data-dismiss="modal">Chiudi<i class="fas fa-times ml-1"></i></button>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+  </div>
+    <!--Modal: Mappa Ristorante-->
+
+    <section class="ftco-section ftco-about" id="ricevimento">
+    	<div class="container">
+    		<div class="row justify-content-center pb-5">
+          <div class="col-md-12 text-center heading-section ftco-animate">
+          	<!-- <span class="clone">Place</span> -->
+            <h2 class="mb-3">Ricevimento</h2>
+          </div>
+        </div>
+        <div class="row">
+    			<div class="col-md-12">
+    				<div class="wrap">
+			    		<div class="row d-flex">
+			    			<div class="col-md-6 py-md-5 text">
+			    				<div class="py-md-4">
+				    				<div class="row justify-content-start pb-3">
+						          <div class="col-md-12 ftco-animate p-4 p-lg-5 text-center">
+						            <span class="subheading mb-2">Dopo la cerimonia festeggeremo presso</span>
+                        <span class="subheading"><strong>Feudo Agnadello</strong><br>Via Rivolta, 1<br><strong>Agnadello, Cremona</strong></span>
+                      </div>
+                      <div class="col text-center">
+                        <button type="button"
+                                class="btn btn-primary btn-lg"
+                                data-toggle="modal"
+                                data-target="#ModalShowRestaurantMap"
+                                data-name='cerimonia'>mappa</button>
+                      </div>
+                      <div class="col-md-12 ftco-animate p-4 p-lg-5 text-center">
+						            <span class="subheading">La strada è lunga, ma la vostra pazienza sarà debitamente compensata!</span>
+                      </div>
+						        </div>
+					        </div>
+				        </div>
+                <div class="col-md-6 d-flex">
+                  <div class="img d-flex align-self-stretch align-items-center" style="background-image:url(../static/images/ricevimento.jpg);">
+                  </div>
+                </div>
+			        </div>
+			      </div>
+		      </div>
+		    </div>
+    	</div>
+    </section>
+
+
+    <section class="ftco-section" id="viaggio-nozze">
+   		<div class="container">
+   			<div class="row justify-content-center pb-5">
+          <div class="col-md-12 text-center heading-section ftco-animate">
+            <h2 class="mb-3">Viaggio di Nozze</h2>
+          </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-12">
+        		<ul class="timeline animate-box">
+							<li class="animate-box">
+								<div class="timeline-badge" style="background-image:url(../static/images/san-francisco.jpg);"></div>
+								<div class="timeline-panel ftco-animate text-md-right">
+									<div class="overlay"></div>
+									<div class="timeline-heading">
+										<span class="date">17 &rarr; 19 maggio</span>
+										<h3 class="timeline-title">San Francisco</h3>
+									</div>
+									<!-- <div class="timeline-body">
+										<p style="visibility: hidden">Small description</p>
+									</div> -->
+								</div>
+							</li>
+							<li class="timeline-inverted animate-box">
+								<div class="timeline-badge" style="background-image:url(../static/images/death-valley.jpg);"></div>
+								<div class="timeline-panel ftco-animate">
+									<div class="overlay overlay-2"></div>
+									<div class="timeline-heading">
+										<span class="date">20 &rarr; 21 maggio</span>
+										<h3 class="timeline-title">Valley of Fire & Death Valley</h3>
+									</div>
+									<!-- <div class="timeline-body">
+                    <p>Small description</p>
+									</div> -->
+								</div>
+							</li>
+							<li class="animate-box">
+								<div class="timeline-badge" style="background-image:url(../static/images/las-vegas.jpg);"></div>
+								<div class="timeline-panel ftco-animate text-md-right">
+									<div class="overlay"></div>
+									<div class="timeline-heading">
+										<span class="date">22 maggio</span>
+										<h3 class="timeline-title">Las Vegas</h3>
+									</div>
+									<!-- <div class="timeline-body">
+                    <p>Small description</p>
+									</div> -->
+								</div>
+							</li>
+							<li class="timeline-inverted animate-box">
+								<div class="timeline-badge" style="background-image:url(../static/images/grand-canyon.jpg);"></div>
+								<div class="timeline-panel ftco-animate">
+									<div class="overlay overlay-2"></div>
+									<div class="timeline-heading">
+										<span class="date">23 &rarr; 29 maggio</span>
+										<h3 class="timeline-title">Grand Canyon & Monument Valley</h3>
+									</div>
+									<!-- <div class="timeline-body">
+                    <p>Small description</p>
+									</div> -->
+								</div>
+							</li>
+              <li class="animate-box">
+                <div class="timeline-badge" style="background-image:url(../static/images/san-diego.jpg);"></div>
+								<div class="timeline-panel ftco-animate text-md-right">
+									<div class="overlay"></div>
+									<div class="timeline-heading">
+										<span class="date">30 maggio &rarr; 4 giugno</span>
+										<h3 class="timeline-title">San Diego & Los Angeles</h3>
+									</div>
+									<!-- <div class="timeline-body">
+                    <p>Small description</p>
+									</div> -->
+								</div>
+							</li>
+			    	</ul>
+        	</div>
+        </div>
+   		</div>
+   	</section>
+
+
+    <section class="ftco-section bg-secondary" id="rsvp-section">
+    	<div class="container">
+    		<div class="row justify-content-center pb-3">
+          <div class="col-md-12 text-center heading-section ftco-animate">
+            <h2 class="mb-3">RSVP</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+        	<div class="col-md-7">
+            <form class='rsvp-form'>
+              <div class="form-group">
+                <label for="rsvpNome">Nome</label>
+                <input type="text" class="form-control" id="rsvpNome">
+              </div>
+              <div class="form-group">
+                <label for="rsvpEmail">Email</label>
+                <input type="email" class="form-control" id="rsvpEmail">
+              </div>
+              <div class="form-group">
+                <label for="rsvpAdulti">Numero adulti</label>
+                <input type="number" class="form-control" id="rsvpAdulti" placeholder=1>
+              </div>
+              <div class="form-group">
+                <label for="rsvpBebe">Numero bambini fino a 2 anni</label>
+                <input type="number" class="form-control" id="rsvpBebe" placeholder=0>
+              </div>
+              <div class="form-group">
+                <label for="rsvpBimbi">Numero bambini dai 3 agli 8 anni</label>
+                <input type="number" class="form-control" id="rsvpBimbi" placeholder=0>
+              </div>
+              <div class="form-group">
+                <label for="rsvpAllergie">Indicare eventuali allergie e/o particolari esigenze alimentari</label>
+                <textarea class="form-control" id="rsvpAllergie" rows="3"></textarea>
+              </div>
+              <div class="form-row text-center">
+                  <div class="col-12">
+                      <button type="submit" class="btn btn-success btn-lg">See you there!</button>
+                  </div>
+               </div>
+             </form>
+        </div>
+    	</div>
+    </section>
+
+    <div class="modal fade" id="ModalRegalo" tabindex="-1" role="dialog" aria-labelledby="ModalRegaloLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-title-grazie"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Per finalizzare il tuo regalo, ti chiediamo di effettuare un bonifico al seguente IBAN:
+              <br><b>IT20P0306933480100000000946</b>
+              <br>Intestato a <b>Ilaria Speranza</b>
+              <br>Banca Intesa San Paolo
+            </p>
+            <form id="makeDonation">
+              <input type='hidden' id="regalo-id">
+              <div class="form-group row">
+                <label for="regalo-name" class="col-sm-2 col-form-label">Regalo: </label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control-plaintext" id="regalo-name" readonly>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="regalo-from" class="col-sm-2 col-form-label">Mittente: </label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="regalo-from">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="regalo-importo" class="col-sm-2 col-form-label">Importo:</label>
+                <div class="col-sm-3">
+                  <input class="form-control" type = "number" id="regalo-importo" min='0'>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="regalo-message" class="col-form-label">Messaggio per gli sposi:</label>
+                <textarea class="form-control" id="regalo-message"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="regalo-from-email" class="col-form-label">Email (facoltativa):</label>
+                <input type="email" class="form-control" id="regalo-from-email">
+                <!-- <textarea class="form-control" type = "email" id="regalo-from-email"></textarea> -->
+              </div>
+              <button type="button" class="btn btn-primary float-right" data-dismiss="modal">Chiudi</button>
+              <button type="submit" id="form-submit" class="btn btn-success float-right">Conferma</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="ModalRegaloGrazie" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body" id="dynamic-content">
+                        <img src="//placehold.it/600x400" class="img-fluid" alt=""/>
+                    </div>
+                </div>
+           </div>
+    </div>
+
+    <section class="ftco-section" id="lista-nozze">
+    	<div class="container-fluid px-md-4">
+    		<div class="row justify-content-center pb-5">
+          <div class="col-md-12 text-center heading-section ftco-animate">
+            <h2 class="mb-3">Lista Nozze</h2>
+            <h4>
+              Puoi aiutarci ad arredare la <a href="#listaCasaHeader">nuova casa</a> o a rendere speciale il nostro <a href = '#listaViaggioHeader'>viaggio di nozze</a>!
+            </h4>
+          </div>
+        </div>
+
+        <div class = 'row text-center' id='listaCasaHeader'>
+          <h3>Regalaci un pezzetto di casa!</h3>
+        </div>
+        <div class="row" id='listaCasa'></div>
+
+        <div class="row"></div>
+
+        <div class = 'row' id='listaViaggioHeader' style='margin-top:100px'>
+          <h3>Regalaci un'esperienza indimenticabile!</h3>
+        </div>
+        <div class='row' id='listaViaggio'></div>
+
+
+    	</div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+<!------------------------------------------------------------------------------------------------------>
+
+  	<footer class="ftco-footer ftco-section">
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="../static/js/jquery.min.js"></script>
+  <script src="../static/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="../static/js/popper.min.js"></script>
+  <script src="../static/js/bootstrap.min.js"></script>
+  <script src="../static/js/jquery.easing.1.3.js"></script>
+  <script src="../static/js/jquery.waypoints.min.js"></script>
+  <script src="../static/js/jquery.stellar.min.js"></script>
+  <script src="../static/js/owl.carousel.min.js"></script>
+  <script src="../static/js/jquery.magnific-popup.min.js"></script>
+  <script src="../static/js/aos.js"></script>
+  <script src="../static/js/jquery.animateNumber.min.js"></script>
+  <script src="../static/js/jquery.mb.YTPlayer.min.js"></script>
+  <script src="../static/js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABp0GM1bXb3CX2DK2VuTnierdH4mrmFAM"></script>
+  <!-- <script src="../static/js/google-map.js"></script> -->
+
+  <script src="../static/js/main.js"></script>
+
+  </body>
+</html>
