@@ -571,45 +571,28 @@ function getChurchMap(){
    return validDonation;
  }
 
- // function submitForm(){
- //   // Initiate Variables With Form Content
- //   var name = $("#regalo-from").val();
- //   var email = $("#regalo-from-email").val();
- //   var message = $("#regalo-message").val();
- //
- //   $.ajax({
- //       type: "POST",
- //       url: "../static/php/form-process.php",
- //       data: "name=" + name + "&email=" + email + "&message=" + message,
- //       success : function(text){
- //           if (text == "success"){
- //               formSuccess();
- //           }
- //       },
- //       error: function (jqXHR, exception) {
- //           var msg = '';
- //           if (jqXHR.status === 0) {
- //               msg = 'Not connect.\n Verify Network.';
- //           } else if (jqXHR.status == 404) {
- //               msg = 'Requested page not found. [404]';
- //           } else if (jqXHR.status == 500) {
- //               msg = 'Internal Server Error [500].';
- //           } else if (exception === 'parsererror') {
- //               msg = 'Requested JSON parse failed.';
- //           } else if (exception === 'timeout') {
- //               msg = 'Time out error.';
- //           } else if (exception === 'abort') {
- //               msg = 'Ajax request aborted.';
- //           } else {
- //               msg = 'Uncaught Error.\n' + jqXHR.responseText;
- //           }
- //           // $('#post').html(msg);
- //           console.log(msg);
- //       },
- //   });
- //
- //   console.log('Triggered');
- // }
+ function submitForm(){
+   // Initiate Variables With Form Content
+   var name = $("#regalo-from").val();
+   var email = $("#regalo-from-email").val();
+   var message = $("#regalo-message").val();
+
+   $.ajax({
+       type: "POST",
+       url: "/sendMail",
+       data: "name=" + name + "&email=" + email + "&message=" + message,
+       success : function(text){
+           if (text == "success"){
+               formSuccess();
+           }
+       },
+       error: function (error) {
+           console.log(error);
+       },
+   });
+
+   console.log('Triggered');
+ }
 
  function formSuccess(){
      $( "#msgSubmit" ).removeClass( "hidden" );
@@ -619,10 +602,10 @@ function getChurchMap(){
      // cancels the form submission
      event.preventDefault();
      var validDonation = updateProgressBar();
-     // submitForm();
      $("#ModalRegalo").modal('hide');
      if(validDonation){
-       $("#ModalRegaloGrazie").modal('show');       
+       $("#ModalRegaloGrazie").modal('show');
+       submitForm();
      }
  });
 

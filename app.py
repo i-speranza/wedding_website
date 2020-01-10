@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 from flask_mysqldb import MySQL
+from flask_mail import Mail,  Message
 import pandas as pd
 import os
 
@@ -11,6 +12,17 @@ app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'ToBeDone'
 app.config['MYSQL_DB'] = 'wedding'
+
+app.config.update(
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=465,
+    MAIL_USE_TLS= False,
+    MAIL_USE_SSL=True,
+    MAIL_USERNAME = 'giacomoeilaria.16maggio2020@gmail.com',
+    MAIL_PASSWORD = 'ToBeDone',
+)
+
+mail = Mail(app)
 
 mysql = MySQL()
 mysql.init_app(app)
@@ -81,6 +93,16 @@ def populateListaViaggio():
 
     return jsonify(res.to_json(orient='records'))
 
+@app.route('/sendMail', methods = ['POST'])
+def sendMail():
+    with app.app_context():
+        msg = Message(subject="Hello2",
+                      sender=app.config.get("MAIL_USERNAME"),
+                      recipients=["giacomoeilaria.16maggio2020@gmail.com"], # replace with your email for testing
+                      body="This is a test email I sent with Gmail and Python!")
+        mail.send(msg)
+
+    return 'OK'
 
 if __name__ == '__main__':
     app.run(debug=True)
