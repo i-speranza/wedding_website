@@ -9,13 +9,6 @@ app = Flask(__name__)
 
 img_path = '../static/images/listaNozze/'
 
-# app.config['MYSQL_HOST'] = 'localhost'
-# app.config['MYSQL_USER'] = 'root'
-# app.config['MYSQL_PASSWORD'] = 'ToBeDone'
-# app.config['MYSQL_DB'] = 'wedding'
-print('-----------------------------------------------------------')
-print(os.environ['DATABASE_URL'])
-print('-----------------------------------------------------------')
 DATABASE_URL = os.environ['DATABASE_URL']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
@@ -24,8 +17,8 @@ app.config.update(
     MAIL_PORT=465,
     MAIL_USE_TLS= False,
     MAIL_USE_SSL=True,
-    MAIL_USERNAME = 'giacomoeilaria.16maggio2020@gmail.com',
-    MAIL_PASSWORD = 'ToBeDone',
+    MAIL_USERNAME=os.environ['MAIL_USERNAME'],
+    MAIL_PASSWORD=os.environ['MAIL_PASSWORD'],
 )
 
 mail = Mail(app)
@@ -106,7 +99,7 @@ def populateListaViaggio():
 @app.route('/sendMail', methods = ['POST'])
 def sendMail():
     with app.app_context():
-        msg = Message(subject="Hello2",
+        msg = Message(subject="FUNZIONA!!!",
                       sender=app.config.get("MAIL_USERNAME"),
                       recipients=["giacomoeilaria.16maggio2020@gmail.com"], # replace with your email for testing
                       body="This is a test email I sent with Gmail and Python!")
