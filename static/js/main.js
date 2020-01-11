@@ -579,6 +579,12 @@ function getChurchMap(){
    var regalo = $("#regalo-name").val();
    var importo = $("#regalo-importo").val();
 
+   console.log(name);
+   console.log(email);
+   console.log(message);
+   console.log(regalo);
+   console.log(importo);
+
    $.ajax({
        type: "POST",
        url: "/sendMail",

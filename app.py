@@ -104,6 +104,8 @@ def sendMail():
     donor_msg = request.form['message']
     donation = request.form['importo']
 
+    print(donor, chosen_present, donor_email, donor_msg, donation)
+
     with app.app_context():
         msg = Message(subject="Nuovo regalo! {} ha contribuito a {}".format(donor, chosen_present),
                       sender=app.config.get("MAIL_USERNAME"),
