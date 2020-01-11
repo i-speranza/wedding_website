@@ -36,8 +36,8 @@ mail = Mail(app)
 def fetch_from_DB(present_id):
     # conn = mysql.connection
     cursor = conn.cursor()
-    cursor.execute('''SELECT ID, NAME, PREZZO, PERC FROM PRESENTS
-                      WHERE ID = {}'''.format(present_id))
+    cursor.execute("""SELECT ID, NAME, PREZZO, PERC FROM PRESENTS
+                      WHERE ID = {}""".format(present_id))
     ret = cursor.fetchone()
     cursor.close()
     return ret
@@ -45,8 +45,8 @@ def fetch_from_DB(present_id):
 def update_perc_in_DB(present_id, new_perc):
     # conn = mysql.connection
     cursor = conn.cursor()
-    cursor.execute('''UPDATE PRESENTS SET PERC = {}
-                      WHERE ID = {}'''.format(new_perc, present_id))
+    cursor.execute("""UPDATE PRESENTS SET PERC = {}
+                      WHERE ID = {}""".format(new_perc, present_id))
     conn.commit()
     cursor.close()
 
@@ -82,8 +82,8 @@ def donate():
 def populateListaCasa():
     # conn = mysql.connection
     cursor = conn.cursor()
-    cursor.execute('''SELECT ID, NAME, PREZZO, PERC, IMG, CATEGORY FROM PRESENTS
-                      WHERE CATEGORY = "casa"''')
+    cursor.execute("""SELECT ID, NAME, PREZZO, PERC, IMG, CATEGORY FROM PRESENTS
+                    WHERE CATEGORY = 'casa';""")
     res = cursor.fetchall()
     res = pd.DataFrame(list(res), columns = ['Id', 'Name', 'Prezzo', 'Perc', 'Img', 'Category'])
     res.Img = res.Img.apply(lambda img: os.path.join(img_path, img))
@@ -94,8 +94,8 @@ def populateListaCasa():
 def populateListaViaggio():
     # conn = mysql.connection
     cursor = conn.cursor()
-    cursor.execute('''SELECT ID, NAME, PREZZO, PERC, IMG, CATEGORY FROM PRESENTS
-                      WHERE CATEGORY = "viaggio"''')
+    cursor.execute("""SELECT ID, NAME, PREZZO, PERC, IMG, CATEGORY FROM PRESENTS
+                    WHERE CATEGORY = 'viaggio';""")
     res = cursor.fetchall()
     res = pd.DataFrame(list(res), columns = ['Id', 'Name', 'Prezzo', 'Perc', 'Img', 'Category'])
     res.Img = res.Img.apply(lambda img: os.path.join(img_path, img))
