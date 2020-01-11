@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
-from flask_mysqldb import MySQL
+# from flask_mysqldb import MySQL
 from flask_mail import Mail,  Message
+import psycopg2
 import pandas as pd
 import os
 
@@ -8,10 +9,13 @@ app = Flask(__name__)
 
 img_path = '../static/images/listaNozze/'
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'ToBeDone'
-app.config['MYSQL_DB'] = 'wedding'
+# app.config['MYSQL_HOST'] = 'localhost'
+# app.config['MYSQL_USER'] = 'root'
+# app.config['MYSQL_PASSWORD'] = 'ToBeDone'
+# app.config['MYSQL_DB'] = 'wedding'
+
+DATABASE_URL = os.environ['DATABASE_URL']
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 app.config.update(
     MAIL_SERVER='smtp.gmail.com',
@@ -24,22 +28,25 @@ app.config.update(
 
 mail = Mail(app)
 
-mysql = MySQL()
-mysql.init_app(app)
+# mysql = MySQL()
+# mysql.init_app(app)
 
 def fetch_from_DB(present_id):
-    conn = mysql.connection
+    # conn = mysql.connection
     cursor = conn.cursor()
     cursor.execute('''SELECT ID, NAME, PREZZO, PERC FROM PRESENTS
                       WHERE ID = {}'''.format(present_id))
-    return cursor.fetchone()
-
+    ret = cursor.fetchone()
+    cursor.close()
+    return ret
+    
 def update_perc_in_DB(present_id, new_perc):
-    conn = mysql.connection
+    # conn = mysql.connection
     cursor = conn.cursor()
     cursor.execute('''UPDATE PRESENTS SET PERC = {}
                       WHERE ID = {}'''.format(new_perc, present_id))
     conn.commit()
+    cursor.close()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -71,25 +78,26 @@ def donate():
 
 @app.route('/populateListaCasa',methods=['POST'])
 def populateListaCasa():
-    conn = mysql.connection
+    # conn = mysql.connection
     cursor = conn.cursor()
     cursor.execute('''SELECT ID, NAME, PREZZO, PERC, IMG, CATEGORY FROM PRESENTS
                       WHERE CATEGORY = "casa"''')
     res = cursor.fetchall()
     res = pd.DataFrame(list(res), columns = ['Id', 'Name', 'Prezzo', 'Perc', 'Img', 'Category'])
     res.Img = res.Img.apply(lambda img: os.path.join(img_path, img))
-
+    cursor.close()
     return jsonify(res.to_json(orient='records'))
 
 @app.route('/populateListaViaggio',methods=['POST'])
 def populateListaViaggio():
-    conn = mysql.connection
+    # conn = mysql.connection
     cursor = conn.cursor()
     cursor.execute('''SELECT ID, NAME, PREZZO, PERC, IMG, CATEGORY FROM PRESENTS
                       WHERE CATEGORY = "viaggio"''')
     res = cursor.fetchall()
     res = pd.DataFrame(list(res), columns = ['Id', 'Name', 'Prezzo', 'Perc', 'Img', 'Category'])
     res.Img = res.Img.apply(lambda img: os.path.join(img_path, img))
+    cursor.close()
 
     return jsonify(res.to_json(orient='records'))
 
