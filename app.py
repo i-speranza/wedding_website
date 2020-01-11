@@ -13,7 +13,9 @@ img_path = '../static/images/listaNozze/'
 # app.config['MYSQL_USER'] = 'root'
 # app.config['MYSQL_PASSWORD'] = 'ToBeDone'
 # app.config['MYSQL_DB'] = 'wedding'
-
+print('-----------------------------------------------------------')
+print(os.environ)
+print('-----------------------------------------------------------')
 DATABASE_URL = os.environ['DATABASE_URL']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
@@ -39,7 +41,7 @@ def fetch_from_DB(present_id):
     ret = cursor.fetchone()
     cursor.close()
     return ret
-    
+
 def update_perc_in_DB(present_id, new_perc):
     # conn = mysql.connection
     cursor = conn.cursor()
