@@ -14,7 +14,7 @@ img_path = '../static/images/listaNozze/'
 # app.config['MYSQL_PASSWORD'] = 'ToBeDone'
 # app.config['MYSQL_DB'] = 'wedding'
 print('-----------------------------------------------------------')
-print(os.environ)
+print(os.environ['DATABASE_URL'])
 print('-----------------------------------------------------------')
 DATABASE_URL = os.environ['DATABASE_URL']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
