@@ -98,11 +98,17 @@ def populateListaViaggio():
 
 @app.route('/sendMail', methods = ['POST'])
 def sendMail():
+    donor = request.form['name']
+    chosen_present = request.form['regalo']
+    donor_email = request.form['email']
+    donor_msg = request.form['message']
+    donation = request.form['importo']
+
     with app.app_context():
-        msg = Message(subject="FUNZIONA!!!",
+        msg = Message(subject="Nuovo regalo! {} ha contribuito a {}".format(donor, chosen_present),
                       sender=app.config.get("MAIL_USERNAME"),
                       recipients=["giacomoeilaria.16maggio2020@gmail.com"], # replace with your email for testing
-                      body="This is a test email I sent with Gmail and Python!")
+                      body="Email: {}\nImporto: {}\nMessaggio:\n{}".format(donor_email, donation, donor_msg))
         mail.send(msg)
 
     return 'OK'

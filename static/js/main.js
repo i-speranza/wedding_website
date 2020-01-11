@@ -576,11 +576,13 @@ function getChurchMap(){
    var name = $("#regalo-from").val();
    var email = $("#regalo-from-email").val();
    var message = $("#regalo-message").val();
+   var regalo = $("#regalo-name").val();
+   var importo = $("#regalo-importo").val();
 
    $.ajax({
        type: "POST",
        url: "/sendMail",
-       data: "name=" + name + "&email=" + email + "&message=" + message,
+       data: {name:name, email:email, message:message, regalo:regalo, importo:importo},
        success : function(text){
            if (text == "success"){
                formSuccess();
