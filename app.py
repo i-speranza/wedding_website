@@ -106,6 +106,21 @@ def sendMail():
 
     print(donor, chosen_present, donor_email, donor_msg, donation)
 
+    if donor_email:
+        with app.app_context():
+            msg = Message(subject="Grazie da Giacomo e Ilaria!",
+                          sender=app.config.get("MAIL_USERNAME"),
+                          recipients=[donor_email], # replace with your email for testing
+                          body="""Ciao {}, grazie di cuore per il tuo regalo!
+
+Di seguito i dettagli per effettuare il bonifico
+IBAN: IT20P0306933480100000000946
+intestato a: Ilaria Speranza
+
+A presto!
+Giacomo e Ilaria""".format(donor))
+            mail.send(msg)
+
     with app.app_context():
         msg = Message(subject="Nuovo regalo! {} ha contribuito a {}".format(donor, chosen_present),
                       sender=app.config.get("MAIL_USERNAME"),
