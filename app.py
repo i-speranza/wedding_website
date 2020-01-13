@@ -96,15 +96,31 @@ def populateListaViaggio():
 
     return jsonify(res.to_json(orient='records'))
 
-@app.route('/sendMail', methods = ['POST'])
-def sendMail():
+@app.route('/sendMailRSVP', methods = ['POST'])
+def sendMailRSVP():
+    nome = request.form['nome']
+    email = request.form['email']
+    num_adulti = request.form['numAdulti']
+    num_bimbi = request.form['numBimbi']
+    num_bebe = request.form['numBebe']
+    allergie = request.form['allergie']
+
+    with app.app_context():
+        msg = Message(subject="Nuovo partecipante!",
+                      sender=app.config.get("MAIL_USERNAME"),
+                      recipients=["giacomoeilaria.16maggio2020@gmail.com"], # replace with your email for testing
+                      body="Nome: {}\nEmail: {}\nAdulti: {}\nBimbi: {}\nInfanti: {}\nAllergie: {}".format(nome, email, num_adulti, num_bimbi, num_bebe, allergie))
+        mail.send(msg)
+
+    return 'OK'
+
+@app.route('/sendMailRegalo', methods = ['POST'])
+def sendMailRegalo():
     donor = request.form['name']
     chosen_present = request.form['regalo']
     donor_email = request.form['email']
     donor_msg = request.form['message']
     donation = request.form['importo']
-
-    print(donor, chosen_present, donor_email, donor_msg, donation)
 
     if donor_email:
         with app.app_context():

@@ -527,6 +527,26 @@ function getChurchMap(){
      getChurchMap()
  })
 
+ $('#rsvp-submit').on('click', function (){
+    var nome = $('#rsvpNome').val();
+    var email = $('#rsvpEmail').val();
+    var numAdulti = $('#rsvpAdulti').val();
+    var numBimbi = $('#rsvpBimbi').val();
+    var numBebe = $('#rsvpBebe').val();
+    var allergie = $('#rsvpAllergie').val();
+
+    $.ajax({
+        type: "POST",
+        url: "/sendMailRSVP",
+        data: {nome:nome, email:email, numAdulti:numAdulti,
+          numBimbi:numBimbi, numBebe:numBebe, allergie:allergie},
+        success : function(){},
+        error: function (error) {
+            console.log(error);
+        },
+    });
+ })
+
  $('#ModalRegalo').on('show.bs.modal', function (event) {
      var button = $(event.relatedTarget) // Button that triggered the
      // Get the name of the present from the id of the clicked card
@@ -581,12 +601,15 @@ function getChurchMap(){
 
    $.ajax({
        type: "POST",
-       url: "/sendMail",
+       url: "/sendMailRegalo",
        data: {name:name, email:email, message:message, regalo:regalo, importo:importo},
        success : function(text){
-           if (text == "success"){
-               formSuccess();
-           }
+           console.log('---------------------------');
+           console.log(text);
+           console.log('---------------------------');
+           // if (text == "success"){
+           //     formSuccess();
+           // }
        },
        error: function (error) {
            console.log(error);
@@ -596,9 +619,9 @@ function getChurchMap(){
    console.log('Triggered');
  }
 
- function formSuccess(){
-     $( "#msgSubmit" ).removeClass( "hidden" );
- }
+ // function formSuccess(){
+ //     $( "#msgSubmit" ).removeClass( "hidden" );
+ // }
 
  $("#makeDonation").submit(function(event){
      // cancels the form submission
