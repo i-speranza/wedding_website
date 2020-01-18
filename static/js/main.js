@@ -527,7 +527,8 @@ function getChurchMap(){
      getChurchMap()
  })
 
- $('#rsvp-submit').on('click', function (){
+ $('#rsvp-submit').on('click', function (event){
+    event.preventDefault();
     var nome = $('#rsvpNome').val();
     var email = $('#rsvpEmail').val();
     var numAdulti = $('#rsvpAdulti').val();
@@ -540,10 +541,18 @@ function getChurchMap(){
         url: "/sendMailRSVP",
         data: {nome:nome, email:email, numAdulti:numAdulti,
           numBimbi:numBimbi, numBebe:numBebe, allergie:allergie},
-        success : function(){},
-        error: function (error) {
-            console.log(error);
+        success: function(res){
+            console.log(res);
+            $('#ModalRSVPconferma').modal('show');
         },
+        error: function(xhr, status, error) {
+          var err = "(" + xhr.responseText + ")";
+          console.log(err.Message);
+          console.log('xhr: ');
+          console.log(xhr);
+          console.log('status: ' + status);
+          console.log('error: ' + error);
+        }
     });
  })
 
@@ -603,10 +612,7 @@ function getChurchMap(){
        type: "POST",
        url: "/sendMailRegalo",
        data: {name:name, email:email, message:message, regalo:regalo, importo:importo},
-       success : function(text){
-           console.log('---------------------------');
-           console.log(text);
-           console.log('---------------------------');
+       success: function(text){
            // if (text == "success"){
            //     formSuccess();
            // }
