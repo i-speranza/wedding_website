@@ -8918,7 +8918,9 @@ textarea.form-control {
   margin-top: 0;
   font-size: 22px;
   color: #000000;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  margin-left: 15px;
+  margin-right: 15px; }
 
 .date {
   display: block;
@@ -8927,7 +8929,9 @@ textarea.form-control {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 600;
-  color: #f67e7d; }
+  color: #f67e7d;
+  margin-left: 15px;
+  margin-right: 15px; }
 
 .timeline-body > p,
 .timeline-body > ul {
