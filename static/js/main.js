@@ -409,7 +409,7 @@ function getChurchMap(){
 
    var $cardTitle = $('<h5>', {
      class: 'card-title'
-   }).html(regalo.Name + '<br>' + regalo.Prezzo + '&euro;');
+   }).html(regalo.Name + '<br>' + regalo.Regalato + '/' + regalo.Prezzo + '&euro;');
 
    var $cardBar = $('<div>', {
      class: 'progress',
@@ -433,6 +433,7 @@ function getChurchMap(){
        'data-target': "#ModalRegalo",
        'data-category': regalo.Category,
        'data-name': regalo.Name,
+       'data-prezzo': regalo.Prezzo,
        'data-id': "regalo-" + regalo.Id
      }).text('Contribuisci!')
    })
@@ -562,6 +563,7 @@ function getChurchMap(){
      var chosenPresent = button.data('name')
      // Extract info from data-* attributes
      var chosenCategory = button.data('category')
+     var presentPrice = button.data('prezzo')
      var titleMessage = (chosenCategory === 'casa') ? "ad un pezzetto della nostra casa!" : "ad una tappa della nostra luna di miele!"
      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -569,15 +571,20 @@ function getChurchMap(){
      modal.find('.modal-title#modal-title-grazie').text('Grazie per aver scelto di contribuire ' + titleMessage)
      modal.find('.modal-body input#regalo-name').val(chosenPresent)
      modal.find('.modal-body input#regalo-id').attr('val', button.data('id'))
+     modal.find('.modal-body input#regalo-prezzo').attr('val', presentPrice)
  })
 
  function updateProgressBar(){
    var importo = $('#regalo-importo').val();
    var chosenPresentId = $('#regalo-id').attr('val');
+   var chosenPresentPrice = $('#regalo-prezzo').attr('val');
+   var chosenPresentName = $('#regalo-name').val();
    // Get the object containing the progress bar
    var chosenPresent = $('#' + chosenPresentId);
    // var presentCost = chosenPresent.attr('importo');
    var progressBar = chosenPresent.find('.progress-bar')
+   var priceInfo = chosenPresent.find('.card-title')
+   var button = chosenPresent.find('.btn')
 
    var validDonation = true;
    $.ajax({
@@ -589,8 +596,16 @@ function getChurchMap(){
      success: function(response){
        console.log(response);
        var newPerc = response['newPerc'];
+       var newValue = response['newValue'];
+       var presentComplete = response['presentComplete'];
        validDonation = response['validDonation'];
        progressBar.css('width', newPerc+'%').attr('aria-valuenow', newPerc).text(newPerc+'%');
+       priceInfo.html(chosenPresentName + '<br>' + newValue + '/' + chosenPresentPrice + '&euro;')
+       if (presentComplete){
+         button.attr("disabled", true);
+         button.text('Completato!');
+         button.removeClass('btn-primary').addClass('btn-success');
+       };
      },
      error: function(error){
        console.log(error);
@@ -621,8 +636,6 @@ function getChurchMap(){
            console.log(error);
        },
    });
-
-   console.log('Triggered');
  }
 
  // function formSuccess(){

@@ -29,17 +29,17 @@ mail = Mail(app)
 def fetch_from_DB(present_id):
     # conn = mysql.connection
     cursor = conn.cursor()
-    cursor.execute("""SELECT ID, NAME, PREZZO, PERC FROM PRESENTS
+    cursor.execute("""SELECT ID, NAME, PREZZO, REGALATO FROM PRESENTS
                       WHERE ID = {}""".format(present_id))
     ret = cursor.fetchone()
     cursor.close()
     return ret
 
-def update_perc_in_DB(present_id, new_perc):
+def update_regalato_in_DB(present_id, new_value):
     # conn = mysql.connection
     cursor = conn.cursor()
-    cursor.execute("""UPDATE PRESENTS SET PERC = {}
-                      WHERE ID = {}""".format(new_perc, present_id))
+    cursor.execute("""UPDATE PRESENTS SET REGALATO = {}
+                      WHERE ID = {}""".format(new_value, present_id))
     conn.commit()
     cursor.close()
 
@@ -51,35 +51,42 @@ def index():
 def donate():
     # read the posted values from the UI
     _id = request.form['id'].split('-')[1]
-    _, _, prezzo, curr_perc = fetch_from_DB(_id)
+    _, _, prezzo, curr_value = fetch_from_DB(_id)
 
     _donation = request.form['importo']
+    present_complete = False
 
     if _donation: # check if it contains a value
         _donation = float(_donation)
-        new_perc = round(curr_perc + 100*_donation/prezzo)
+        new_value = curr_value + _donation
+        new_perc = round(100*new_value/prezzo)
 
         # limit new_perc between 0 and 100
-        new_perc = max(0, min(100, new_perc))
+        # new_perc = max(0, min(100, new_perc))
 
-        update_perc_in_DB(_id, new_perc)
+        update_regalato_in_DB(_id, new_value)
+
+        if new_value >= prezzo:
+            present_complete = True
 
         valid_donation = True
     else:
         new_perc = curr_perc
+        new_value = curr_value
         valid_donation = False
 
-    return jsonify({'newPerc': new_perc, 'validDonation': valid_donation})
+    return jsonify({'newPerc': new_perc, 'newValue': new_value, 'validDonation': valid_donation, 'presentComplete': present_complete})
 
 @app.route('/populateListaCasa',methods=['POST'])
 def populateListaCasa():
     # conn = mysql.connection
     cursor = conn.cursor()
-    cursor.execute("""SELECT ID, NAME, PREZZO, PERC, IMG, CATEGORY FROM PRESENTS
+    cursor.execute("""SELECT ID, NAME, PREZZO, REGALATO, IMG, CATEGORY FROM PRESENTS
                     WHERE CATEGORY = 'casa';""")
     res = cursor.fetchall()
-    res = pd.DataFrame(list(res), columns = ['Id', 'Name', 'Prezzo', 'Perc', 'Img', 'Category'])
+    res = pd.DataFrame(list(res), columns = ['Id', 'Name', 'Prezzo', 'Regalato', 'Img', 'Category'])
     res.Img = res.Img.apply(lambda img: os.path.join(img_path, img))
+    res = res.assign(Perc = round(100*res.Regalato/res.Prezzo))
     cursor.close()
     return jsonify(res.to_json(orient='records'))
 
@@ -87,11 +94,12 @@ def populateListaCasa():
 def populateListaViaggio():
     # conn = mysql.connection
     cursor = conn.cursor()
-    cursor.execute("""SELECT ID, NAME, PREZZO, PERC, IMG, CATEGORY FROM PRESENTS
+    cursor.execute("""SELECT ID, NAME, PREZZO, REGALATO, IMG, CATEGORY FROM PRESENTS
                     WHERE CATEGORY = 'viaggio';""")
     res = cursor.fetchall()
-    res = pd.DataFrame(list(res), columns = ['Id', 'Name', 'Prezzo', 'Perc', 'Img', 'Category'])
+    res = pd.DataFrame(list(res), columns = ['Id', 'Name', 'Prezzo', 'Regalato', 'Img', 'Category'])
     res.Img = res.Img.apply(lambda img: os.path.join(img_path, img))
+    res = res.assign(Perc = round(100*res.Regalato/res.Prezzo))
     cursor.close()
 
     return jsonify(res.to_json(orient='records'))
