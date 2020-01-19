@@ -58,7 +58,7 @@ def donate():
 
     if _donation: # check if it contains a value
         _donation = float(_donation)
-        new_value = curr_value + _donation
+        new_value = min(curr_value + _donation, prezzo)
         new_perc = round(100*new_value/prezzo)
 
         # limit new_perc between 0 and 100
@@ -137,9 +137,10 @@ def sendMailRegalo():
                           recipients=[donor_email], # replace with your email for testing
                           body="""Ciao {}, grazie di cuore per il tuo regalo!
 
-Di seguito i dettagli per effettuare il bonifico
+Per effettuare il tuo regalo tramite bonifico le coordinate sono
 IBAN: IT20P0306933480100000000946
 intestato a: Ilaria Speranza
+presso: Banca Intesa san Paolo, filiale di Opera
 
 A presto!
 Giacomo e Ilaria""".format(donor))
