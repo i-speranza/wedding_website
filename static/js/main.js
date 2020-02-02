@@ -424,19 +424,36 @@ function getChurchMap(){
 
    $cardBar.find('.progress-bar').css('width', regalo.Perc+'%').attr('aria-valuenow', regalo.Perc).text(regalo.Perc+'%');;
 
-   var $cardFooter = $('<div>', {
-     class: 'card-footer',
-     html: $('<button>', {
-       class:"btn btn-primary",
-       type:"button",
-       'data-toggle': "modal",
-       'data-target': "#ModalRegalo",
-       'data-category': regalo.Category,
-       'data-name': regalo.Name,
-       'data-prezzo': regalo.Prezzo,
-       'data-id': "regalo-" + regalo.Id
-     }).text('Contribuisci!')
-   })
+   if(!regalo.isComplete){
+     var $cardFooter = $('<div>', {
+       class: 'card-footer',
+       html: $('<button>', {
+         class:"btn btn-primary",
+         type:"button",
+         'data-toggle': "modal",
+         'data-target': "#ModalRegalo",
+         'data-category': regalo.Category,
+         'data-name': regalo.Name,
+         'data-prezzo': regalo.Prezzo,
+         'data-id': "regalo-" + regalo.Id
+       }).text('Contribuisci!')
+     })
+   }else{
+     var $cardFooter = $('<div>', {
+       class: 'card-footer',
+       html: $('<button>', {
+         class:"btn btn-success",
+         type:"button",
+         // 'data-toggle': "modal",
+         // 'data-target': "#ModalRegalo",
+         // 'data-category': regalo.Category,
+         // 'data-name': regalo.Name,
+         // 'data-prezzo': regalo.Prezzo,
+         // 'data-id': "regalo-" + regalo.Id
+         'disabled':true
+       }).text('Completato!')
+     })
+   }
 
    $cardBody.append($cardTitle, $cardBar);
    $card.append($cardImg, $cardBody, $cardFooter);

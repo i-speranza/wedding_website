@@ -87,6 +87,7 @@ def populateListaCasa():
     res = pd.DataFrame(list(res), columns = ['Id', 'Name', 'Prezzo', 'Regalato', 'Img', 'Category'])
     res.Img = res.Img.apply(lambda img: os.path.join(img_path, img))
     res = res.assign(Perc = round(100*res.Regalato/res.Prezzo))
+    res = res.assign(isComplete = res.Perc >= 100)
     cursor.close()
     return jsonify(res.to_json(orient='records'))
 
@@ -100,6 +101,7 @@ def populateListaViaggio():
     res = pd.DataFrame(list(res), columns = ['Id', 'Name', 'Prezzo', 'Regalato', 'Img', 'Category'])
     res.Img = res.Img.apply(lambda img: os.path.join(img_path, img))
     res = res.assign(Perc = round(100*res.Regalato/res.Prezzo))
+    res = res.assign(isComplete = res.Perc >= 100)
     cursor.close()
 
     return jsonify(res.to_json(orient='records'))
