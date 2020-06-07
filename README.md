@@ -1,6 +1,7 @@
 # wedding_website
-Website created for my wedding in May 2020, based on Bootstrap4, jQuery, Flask and Postgress
-Deployed on Heroku (both website and DB)
+Website created for my wedding in May 2020 (postponed to July 2020 thanks to Covid...!), based on Bootstrap4, jQuery, Flask and Postgress
+Deployed on Heroku (both website and DB).
+The website is currently up and running @ http://wedding-giacomo-ilaria.herokuapp.com/
 
 To run locally the website: python app.py
 Then the website will be available at localhost:5000
